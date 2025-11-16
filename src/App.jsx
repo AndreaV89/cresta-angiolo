@@ -9,8 +9,12 @@ import {
 
 // Import Components
 import Navbar from "./components/Navbar";
+import Footer from "./components/Footer";
+
+// Import Pages
 import Home from "./pages/Home";
 import PageTemplate from "./pages/PageTemplate";
+import TappaPage from "./pages/TappaPage";
 
 // --- DEFINIZIONE DEL TEMA "CARTA & INCHIOSTRO" ---
 const theme = createTheme({
@@ -35,30 +39,49 @@ const theme = createTheme({
     },
   },
   typography: {
-    fontFamily: '"Montserrat", sans-serif', // Default per il corpo
+    fontFamily: '"Montserrat", sans-serif',
     h1: {
-      fontFamily: '"Cormorant Garamond", serif',
-      fontWeight: 700,
+      fontFamily: '"UnifrakturMaguntia", cursive', // FONT GOTICO
+      fontSize: "3.5rem",
+      fontWeight: 400,
       color: "#1A1A1A",
-      letterSpacing: "-0.02em",
+      letterSpacing: "0.05em", // Il gotico respira meglio con un po' di spazio
+      lineHeight: 1.1,
     },
     h2: {
-      fontFamily: '"Cormorant Garamond", serif',
-      fontWeight: 600,
-      color: "#B85C38", // I titoli H2 in Terra di Siena
+      fontFamily: '"UnifrakturMaguntia", cursive',
+      fontSize: "2.8rem",
+      fontWeight: 400,
+      color: "#B85C38",
+      letterSpacing: "0.04em",
     },
     h3: {
-      fontFamily: '"Cormorant Garamond", serif',
-      fontWeight: 600,
+      fontFamily: '"UnifrakturMaguntia", cursive',
+      fontSize: "2.2rem",
+      fontWeight: 400,
+      letterSpacing: "0.03em",
     },
     h4: {
-      fontFamily: '"Cormorant Garamond", serif',
-      fontStyle: "italic", // Per citazioni o titoli decorativi
+      // Per i sottotitoli, magari usiamo il Montserrat in corsivo per staccare dal gotico pesante
+      fontFamily: '"Montserrat", sans-serif',
+      fontStyle: "italic",
+      fontSize: "1.5rem",
+      color: "#4F5D2F",
+      fontWeight: 500,
+    },
+    h5: {
+      fontFamily: '"UnifrakturMaguntia", cursive',
+      fontSize: "1.8rem",
     },
     button: {
       fontFamily: '"Montserrat", sans-serif',
       fontWeight: 600,
-      textTransform: "none", // Niente tutto maiuscolo, più naturale
+      textTransform: "none",
+      letterSpacing: "0.05em",
+    },
+    body1: {
+      fontSize: "1.05rem",
+      lineHeight: 1.7, // Migliora la leggibilità del testo lungo
     },
   },
   shape: {
@@ -140,6 +163,8 @@ function App() {
         <Navbar />
         <Routes>
           <Route path="/" element={<Home />} />
+
+          {/* Pagine statiche */}
           <Route
             path="/il-progetto"
             element={<PageTemplate title="Il Progetto" />}
@@ -157,46 +182,24 @@ function App() {
             path="/ricettivita"
             element={<PageTemplate title="Ricettività" />}
           />
-          <Route
-            path="/tappa-1"
-            element={<PageTemplate title="Tappa 1: Siena – Castelnuovo" />}
-          />
-          <Route
-            path="/tappa-2"
-            element={
-              <PageTemplate title="Tappa 2: Castelnuovo – Montebenichi" />
-            }
-          />
-          <Route
-            path="/tappa-3"
-            element={<PageTemplate title="Tappa 3: Montebenichi – La Massa" />}
-          />
-          <Route
-            path="/tappa-4"
-            element={
-              <PageTemplate title="Tappa 4: La Massa – Monte San Michele" />
-            }
-          />
-          <Route
-            path="/tappa-5"
-            element={
-              <PageTemplate title="Tappa 5: Monte San Michele – Chiocchio" />
-            }
-          />
+
+          {/* LE TAPPE - Ora collegate tramite "slug" */}
+          <Route path="/tappa-1" element={<TappaPage slug="tappa-1" />} />
+          <Route path="/tappa-2" element={<TappaPage slug="tappa-2" />} />
+          <Route path="/tappa-3" element={<TappaPage slug="tappa-3" />} />
+          <Route path="/tappa-4" element={<TappaPage slug="tappa-4" />} />
+          <Route path="/tappa-5" element={<TappaPage slug="tappa-5" />} />
           <Route
             path="/tappa-6-bis"
-            element={
-              <PageTemplate title="Tappa 6 bis: Chiocchio – San Casciano" />
-            }
+            element={<TappaPage slug="tappa-6-bis" />}
           />
-          <Route
-            path="/tappa-7"
-            element={<PageTemplate title="Tappa 7: San Casciano – Firenze" />}
-          />
+          <Route path="/tappa-7" element={<TappaPage slug="tappa-7" />} />
+
           <Route path="/news" element={<PageTemplate title="News" />} />
           <Route path="/gallery" element={<PageTemplate title="Gallery" />} />
           <Route path="/contatti" element={<PageTemplate title="Contatti" />} />
         </Routes>
+        <Footer />
       </Router>
     </ThemeProvider>
   );
