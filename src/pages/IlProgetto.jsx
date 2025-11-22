@@ -14,10 +14,21 @@ import aspettiGeomorfologici from "../assets/aspetti-geomorfologici.jpg";
 export default function IlProgetto() {
   const navigate = useNavigate();
 
-  // Immagini segnaposto (puoi cambiarle con le tue)
+  // Immagini segnaposto
   const imgStoria = aspettiStorici;
   const imgNatura = aspettiNaturalistici;
   const imgGeo = aspettiGeomorfologici;
+
+  // Stile comune per le immagini "Flottanti"
+  const imageStyleBase = {
+    width: "100%", // Mobile: larghezza piena
+    maxWidth: "450px", // PC: larghezza massima fissa
+    height: "300px",
+    objectFit: "cover",
+    borderRadius: "2px",
+    boxShadow: "3px 3px 6px rgba(0,0,0,0.2)",
+    marginBottom: "20px", // Spazio sotto l'immagine
+  };
 
   return (
     <Container maxWidth="lg" sx={{ py: 8 }}>
@@ -40,7 +51,7 @@ export default function IlProgetto() {
 
       <div className="ink-separator"></div>
 
-      {/* INTRODUZIONE ESTESA (Il tuo testo completo) */}
+      {/* INTRODUZIONE ESTESA */}
       <Container maxWidth="md" sx={{ my: 8 }}>
         <Typography
           variant="body1"
@@ -65,11 +76,10 @@ export default function IlProgetto() {
             L
           </span>
           a <strong>"Cresta"</strong> è un progetto pilota che unisce territori,
-          frazioni e città, valorizzando una montagna che appartiene a tutti. La
-          realizzazione di un Cammino sulla cresta dei Monti del Chianti che
-          unisce due città meravigliose: Siena e Firenze, si snoda su strade
-          bianche e silenziose, attraverso territori selvaggi se paragonati alle
-          dolci colline del Chianti classico [cite: 25-26].
+          frazioni e città, valorizzando una montagna che appartiene a tutti.
+          [cite_start]La realizzazione di un Cammino sulla cresta dei Monti del
+          Chianti che unisce due città meravigliose: Siena e Firenze, si snoda
+          su strade bianche e silenziose [cite: 25-26].
         </Typography>
 
         <Typography
@@ -79,9 +89,7 @@ export default function IlProgetto() {
         >
           Questo prevede in prima battuta la creazione del Cammino di crinale,
           unendo le tre cime principali della catena:{" "}
-          <strong>Monte Luco, Monte San Michele, Poggio di San Giusto</strong>,
-          che sarà la colonna vertebrale di un organismo ben più
-          articolato[cite: 27].
+          <strong>Monte Luco, Monte San Michele, Poggio di San Giusto</strong>.
         </Typography>
 
         <Typography
@@ -91,243 +99,219 @@ export default function IlProgetto() {
         >
           Successivamente, rivolgerà la sua attenzione alle dorsali di{" "}
           <strong>
-            Castellina in Chianti, Panzano, San Casciano e Tavarnelle e i Monti
-            Scalari fino a Poggio alla Croce
+            Castellina in Chianti, Panzano, San Casciano e Tavarnelle
           </strong>
-          . Su queste verranno individuate le rotte salienti legate alla
-          transumanza e al culto micaelico riscoprendo piccole chiese e grandi
-          abbazie, recuperando e restituendo al loro antico splendore strade
-          lastricate e sentieri fino a pochi anni fa percorsi dai nostri
-          antenati [cite: 28-30].
-        </Typography>
-
-        <Typography
-          variant="body1"
-          paragraph
-          sx={{ fontSize: "1.2rem", textAlign: "justify", lineHeight: 1.8 }}
-        >
-          Tutto questo senza tralasciare lo studio, il restauro, il recupero di
-          patrimoni artistici civili e religiosi legati alle finalità del
-          progetto, auspicando su questo la massima collaborazione possibile di
-          autorità civili e religiose[cite: 31].
+          . [cite_start]Su queste verranno individuate le rotte salienti legate
+          alla transumanza e al culto micaelico riscoprendo piccole chiese e
+          grandi abbazie [cite: 28-30].
         </Typography>
       </Container>
 
-      {/* --- SEZIONI TEMATICHE A ZIG-ZAG (Con il tuo testo specifico) --- */}
+      {/* --- SEZIONI CON FLOAT (Stile Giornalistico/Libro) --- */}
 
-      <Box sx={{ display: "flex", flexDirection: "column", gap: 8 }}>
-        {/* 1. ASPETTI STORICI (Testo SX - Foto DX) */}
-        {/* Uso 'sm' invece di 'md' per mantenere il layout affiancato anche su tablet */}
-        <Grid container spacing={4} alignItems="center">
-          <Grid item xs={12} sm={7}>
-            <Box sx={{ p: 3, borderLeft: "4px solid #B85C38" }}>
-              <Box
-                sx={{ display: "flex", alignItems: "center", mb: 2, gap: 2 }}
-              >
-                <HistoryEduIcon sx={{ color: "#B85C38", fontSize: 36 }} />
-                <Typography variant="h2" sx={{ fontSize: "2rem", mb: 0 }}>
-                  Aspetti Storici
-                </Typography>
-              </Box>
-              <Typography
-                variant="body1"
-                paragraph
-                sx={{ textAlign: "justify", lineHeight: 1.7 }}
-              >
-                Nello specifico della Cresta dell’Angiolo, oltre alla riscoperta
-                del pellegrinaggio legato alla figura dell’Arcangelo Michele,
-                bisogna dire che buona parte del cammino ricalca tracciati
-                antichissimi: in particolare quelli etruschi che collegavano la
-                Tuscia a Fiesole.
-              </Typography>
-              <Typography
-                variant="body1"
-                paragraph
-                sx={{ textAlign: "justify", lineHeight: 1.7 }}
-              >
-                [cite_start]La stessa viabilità sarà quella dell’antagonismo
-                militare tra i due comuni medievali di Firenze e Siena, fino
-                alla supremazia di Firenze; per finire in epoca moderna con la
-                direzione dell’avanzata inglese verso Firenze durante l’estate
-                del 1944 [cite: 33-34].
-              </Typography>
-              <Typography
-                variant="body1"
-                paragraph
-                sx={{ textAlign: "justify", lineHeight: 1.7 }}
-              >
-                Su queste strade nascono monasteri benedettini, castelli e torri
-                medievali, e si intersecano le millenarie vie delle greggi
-                transumanti.
+      <Box sx={{ display: "flex", flexDirection: "column", gap: 10 }}>
+        {/* 1. ASPETTI STORICI (Immagine Flotta a DESTRA) */}
+        <Box sx={{ p: { md: 2 } }}>
+          {" "}
+          {/* Container */}
+          {/* IMMAGINE FLOAT RIGHT */}
+          <Box
+            component="img"
+            src={imgStoria}
+            sx={{
+              ...imageStyleBase,
+              border: "1px solid #B85C38",
+              // RESPONSIVE FLOAT:
+              float: { xs: "none", md: "right" }, // Mobile: Nessuno | PC: Destra
+              marginLeft: { md: "40px" }, // Spazio a sinistra del testo
+              transform: { md: "rotate(2deg)" }, // Leggera inclinazione solo su PC
+            }}
+          />
+          {/* TESTO (Avvolge l'immagine) */}
+          <Box sx={{ borderLeft: "4px solid #B85C38", pl: 3 }}>
+            <Box sx={{ display: "flex", alignItems: "center", mb: 2, gap: 2 }}>
+              <HistoryEduIcon sx={{ color: "#B85C38", fontSize: 36 }} />
+              <Typography variant="h2" sx={{ fontSize: "2rem", mb: 0 }}>
+                Aspetti Storici
               </Typography>
             </Box>
-          </Grid>
-          <Grid item xs={12} sm={5}>
-            <Box
-              component="img"
-              src={imgStoria}
-              sx={{
-                width: "100%",
-                height: "300px",
-                objectFit: "cover",
-                borderRadius: "2px",
-                border: "1px solid #B85C38",
-                p: 0.5,
-                bgcolor: "#fff",
-                transform: "rotate(1deg)",
-                boxShadow: 3,
-              }}
-            />
-          </Grid>
-        </Grid>
+            <Typography
+              variant="body1"
+              paragraph
+              sx={{ textAlign: "justify", lineHeight: 1.7 }}
+            >
+              Nello specifico della Cresta dell’Angiolo, oltre alla riscoperta
+              del pellegrinaggio legato alla figura dell’Arcangelo Michele,
+              bisogna dire che buona parte del cammino ricalca tracciati
+              antichissimi: in particolare quelli etruschi che collegavano la
+              Tuscia a Fiesole.
+            </Typography>
+            <Typography
+              variant="body1"
+              paragraph
+              sx={{ textAlign: "justify", lineHeight: 1.7 }}
+            >
+              [cite_start]La stessa viabilità sarà quella dell’antagonismo
+              militare tra i due comuni medievali di Firenze e Siena, fino alla
+              supremazia di Firenze; per finire in epoca moderna con la
+              direzione dell’avanzata inglese verso Firenze durante l’estate del
+              1944 [cite: 33-34].
+            </Typography>
+            <Typography
+              variant="body1"
+              paragraph
+              sx={{ textAlign: "justify", lineHeight: 1.7 }}
+            >
+              Su queste strade nascono monasteri benedettini, castelli e torri
+              medievali, e si intersecano le millenarie vie delle greggi
+              transumanti.
+            </Typography>
+          </Box>
+          {/* Clearfix per sicurezza (pulisce il float dopo il blocco) */}
+          <Box sx={{ clear: "both" }} />
+        </Box>
 
-        {/* 2. ASPETTI NATURALISTICI (Foto SX - Testo DX) */}
-        {/* Qui metto prima il Grid item dell'immagine così sta sicuramente a sinistra */}
-        <Grid container spacing={4} alignItems="center">
-          <Grid item xs={12} sm={5}>
+        {/* 2. ASPETTI NATURALISTICI (Immagine Flotta a SINISTRA) */}
+        <Box sx={{ p: { md: 2 } }}>
+          {/* IMMAGINE FLOAT LEFT */}
+          <Box
+            component="img"
+            src={imgNatura}
+            sx={{
+              ...imageStyleBase,
+              border: "1px solid #4F5D2F",
+              float: { xs: "none", md: "left" }, // Mobile: Nessuno | PC: Sinistra
+              marginRight: { md: "40px" }, // Spazio a destra del testo
+              transform: { md: "rotate(-2deg)" },
+            }}
+          />
+
+          <Box
+            sx={{
+              borderRight: { md: "4px solid #4F5D2F" },
+              borderLeft: { xs: "4px solid #4F5D2F", md: "none" },
+              pl: { xs: 3, md: 0 },
+              pr: { md: 3 },
+            }}
+          >
             <Box
-              component="img"
-              src={imgNatura}
               sx={{
-                width: "100%",
-                height: "300px",
-                objectFit: "cover",
-                borderRadius: "2px",
-                border: "1px solid #4F5D2F",
-                p: 0.5,
-                bgcolor: "#fff",
-                transform: "rotate(-1deg)",
-                boxShadow: 3,
-              }}
-            />
-          </Grid>
-          <Grid item xs={12} sm={7}>
-            <Box
-              sx={{
-                p: 3,
-                borderRight: { sm: "4px solid #4F5D2F" },
-                borderLeft: { xs: "4px solid #4F5D2F", sm: "none" },
+                display: "flex",
+                alignItems: "center",
+                mb: 2,
+                gap: 2,
+                justifyContent: { md: "flex-end" },
               }}
             >
-              <Box
-                sx={{
-                  display: "flex",
-                  alignItems: "center",
-                  mb: 2,
-                  gap: 2,
-                  justifyContent: { sm: "flex-end" },
-                }}
-              >
-                <Typography
-                  variant="h2"
-                  sx={{ fontSize: "2rem", mb: 0, color: "#4F5D2F" }}
-                >
-                  Aspetti Naturalistici
-                </Typography>
-                <ForestIcon sx={{ color: "#4F5D2F", fontSize: 36 }} />
-              </Box>
               <Typography
-                variant="body1"
-                paragraph
-                sx={{
-                  textAlign: "justify",
-                  lineHeight: 1.7,
-                  textAlignLast: { sm: "right" },
-                }}
+                variant="h2"
+                sx={{ fontSize: "2rem", mb: 0, color: "#4F5D2F" }}
               >
-                La natura e i panorami che si godono sul tragitto sono
-                suggestivi e di estrema variabilità. [cite_start]La vista
-                spazierà verso gli Appennini, la valle dell’Arno coi suoi
-                calanchi, il Monte Amiata, le colline del Chianti e quelle a sud
-                di Firenze [cite: 60-61].
+                Aspetti Naturalistici
               </Typography>
-              <Typography
-                variant="body1"
-                paragraph
-                sx={{
-                  textAlign: "justify",
-                  lineHeight: 1.7,
-                  textAlignLast: { sm: "right" },
-                }}
-              >
-                A volte il cammino transiterà lambendo vigneti e oliveti, fino a
-                salire verso le parti boscose della parte sommitale, ammirando i
-                folti sottoboschi di macchia mediterranea e felci.
-                [cite_start]Marciando su strade bianche, sono poche le occasioni
-                di incontrare persone e tante quelle di poter ascoltare la
-                natura [cite: 62-63].
-              </Typography>
+              <ForestIcon sx={{ color: "#4F5D2F", fontSize: 36 }} />
             </Box>
-          </Grid>
-        </Grid>
-
-        {/* 3. ASPETTI GEOMORFOLOGICI (Testo SX - Foto DX) */}
-        <Grid container spacing={4} alignItems="center">
-          <Grid item xs={12} sm={7}>
-            <Box sx={{ p: 3, borderLeft: "4px solid #1A1A1A" }}>
-              <Box
-                sx={{ display: "flex", alignItems: "center", mb: 2, gap: 2 }}
-              >
-                <TerrainIcon sx={{ color: "#1A1A1A", fontSize: 36 }} />
-                <Typography
-                  variant="h2"
-                  sx={{ fontSize: "2rem", mb: 0, color: "#1A1A1A" }}
-                >
-                  Aspetti Geomorfologici
-                </Typography>
-              </Box>
-              <Typography
-                variant="body1"
-                paragraph
-                sx={{ textAlign: "justify", lineHeight: 1.7 }}
-              >
-                [cite_start]Quello che comunemente viene definito "Il crinale
-                dei monti del Chianti" ha una peculiare forma a base
-                triangolare, con tre versanti su cui si distribuiscono vari
-                fiumi e torrenti (Pesa, Ema, Greve, Ombrone) [cite: 53-56].
-              </Typography>
-              <Typography
-                variant="body1"
-                paragraph
-                sx={{ textAlign: "justify", lineHeight: 1.7 }}
-              >
-                Sul monte San Michele sgorgano le sorgenti di tanti fiumi
-                toscani, un punto cardine del culto micaelico: l’acqua.
-                [cite_start]Partendo da Siena si attraversa un territorio di
-                terreni sabbiosi, per poi salire sul crinale arenaceo del
-                "Macigno", e infine scendere verso Firenze incontrando terreni
-                argillosi tipici della "pietraforte" [cite: 57-58].
-              </Typography>
-            </Box>
-          </Grid>
-          <Grid item xs={12} sm={5}>
-            <Box
-              component="img"
-              src={imgGeo}
+            <Typography
+              variant="body1"
+              paragraph
               sx={{
-                width: "100%",
-                height: "300px",
-                objectFit: "cover",
-                borderRadius: "2px",
-                border: "1px solid #1A1A1A",
-                p: 0.5,
-                bgcolor: "#fff",
-                transform: "rotate(1deg)",
-                boxShadow: 3,
+                textAlign: "justify",
+                lineHeight: 1.7,
+                textAlignLast: { md: "right" },
               }}
-            />
-          </Grid>
-        </Grid>
+            >
+              La natura e i panorami che si godono sul tragitto sono suggestivi
+              e di estrema variabilità. [cite_start]La vista spazierà verso gli
+              Appennini, la valle dell’Arno coi suoi calanchi, il Monte Amiata,
+              le colline del Chianti e quelle a sud di Firenze [cite: 60-61].
+            </Typography>
+            <Typography
+              variant="body1"
+              paragraph
+              sx={{
+                textAlign: "justify",
+                lineHeight: 1.7,
+                textAlignLast: { md: "right" },
+              }}
+            >
+              A volte il cammino transiterà lambendo vigneti e oliveti, fino a
+              salire verso le parti boscose della parte sommitale, ammirando i
+              folti sottoboschi di macchia mediterranea e felci.
+              [cite_start]Marciando su strade bianche, sono poche le occasioni
+              di incontrare persone e tante quelle di poter ascoltare la natura
+              [cite: 62-63].
+            </Typography>
+          </Box>
+          <Box sx={{ clear: "both" }} />
+        </Box>
+
+        {/* 3. ASPETTI GEOMORFOLOGICI (Immagine Flotta a DESTRA) */}
+        <Box sx={{ p: { md: 2 } }}>
+          {/* IMMAGINE FLOAT RIGHT */}
+          <Box
+            component="img"
+            src={imgGeo}
+            sx={{
+              ...imageStyleBase,
+              border: "1px solid #1A1A1A",
+              float: { xs: "none", md: "right" },
+              marginLeft: { md: "40px" },
+              transform: { md: "rotate(1deg)" },
+            }}
+          />
+
+          <Box sx={{ borderLeft: "4px solid #1A1A1A", pl: 3 }}>
+            <Box sx={{ display: "flex", alignItems: "center", mb: 2, gap: 2 }}>
+              <TerrainIcon sx={{ color: "#1A1A1A", fontSize: 36 }} />
+              <Typography
+                variant="h2"
+                sx={{ fontSize: "2rem", mb: 0, color: "#1A1A1A" }}
+              >
+                Aspetti Geomorfologici
+              </Typography>
+            </Box>
+            <Typography
+              variant="body1"
+              paragraph
+              sx={{ textAlign: "justify", lineHeight: 1.7 }}
+            >
+              [cite_start]Quello che comunemente viene definito "Il crinale dei
+              monti del Chianti" ha una peculiare forma a base triangolare, con
+              tre versanti su cui si distribuiscono vari fiumi e torrenti (Pesa,
+              Ema, Greve, Ombrone) [cite: 53-56].
+            </Typography>
+            <Typography
+              variant="body1"
+              paragraph
+              sx={{ textAlign: "justify", lineHeight: 1.7 }}
+            >
+              Sul monte San Michele sgorgano le sorgenti di tanti fiumi toscani,
+              un punto cardine del culto micaelico: l’acqua.
+              [cite_start]Partendo da Siena si attraversa un territorio di
+              terreni sabbiosi, per poi salire sul crinale arenaceo del
+              "Macigno", e infine scendere verso Firenze incontrando terreni
+              argillosi tipici della "pietraforte" [cite: 57-58].
+            </Typography>
+          </Box>
+          <Box sx={{ clear: "both" }} />
+        </Box>
       </Box>
 
       <div className="ink-separator"></div>
 
-      {/* OBIETTIVI (Il tuo elenco) */}
+      {/* OBIETTIVI */}
       <Box sx={{ my: 8, textAlign: "center" }}>
         <Typography variant="h2" gutterBottom sx={{ mb: 6 }}>
           Obiettivi del Cammino
         </Typography>
-        <Grid container spacing={4} justifyContent="center">
+        <Box
+          sx={{
+            display: "flex",
+            flexWrap: "wrap",
+            justifyContent: "center",
+            gap: 3,
+          }}
+        >
           {[
             "Creazione di un Cammino regionale stabile",
             "Recupero della sentieristica storica",
@@ -335,34 +319,33 @@ export default function IlProgetto() {
             "Sviluppo di un turismo lento e sostenibile",
             "Recupero delle testimonianze storico artistiche",
           ].map((goal, index) => (
-            <Grid item xs={12} sm={6} md={4} key={index}>
-              <Paper
-                elevation={1}
+            <Paper
+              key={index}
+              elevation={1}
+              sx={{
+                p: 3,
+                width: "300px",
+                borderTop: "3px solid #B85C38",
+                bgcolor: "#FBF7F0",
+              }}
+            >
+              <VerifiedIcon sx={{ color: "#B85C38", mb: 1, opacity: 0.7 }} />
+              <Typography
+                variant="h6"
                 sx={{
-                  p: 3,
-                  height: "100%",
-                  borderTop: "3px solid #B85C38",
-                  bgcolor: "#FBF7F0",
+                  fontFamily: "Montserrat",
+                  fontSize: "1.1rem",
+                  fontWeight: 500,
                 }}
               >
-                <VerifiedIcon sx={{ color: "#B85C38", mb: 1, opacity: 0.7 }} />
-                <Typography
-                  variant="h6"
-                  sx={{
-                    fontFamily: "Montserrat",
-                    fontSize: "1.1rem",
-                    fontWeight: 500,
-                  }}
-                >
-                  {goal}
-                </Typography>
-              </Paper>
-            </Grid>
+                {goal}
+              </Typography>
+            </Paper>
           ))}
-        </Grid>
+        </Box>
       </Box>
 
-      {/* CALL TO ACTION FINALE */}
+      {/* CALL TO ACTION */}
       <Box
         sx={{
           textAlign: "center",
