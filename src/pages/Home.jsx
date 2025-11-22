@@ -4,7 +4,6 @@ import {
   Typography,
   Box,
   Button,
-  Paper,
   Card,
   CardActionArea,
   CardContent,
@@ -12,7 +11,7 @@ import {
 import { useNavigate } from "react-router-dom";
 
 // Immagini
-import logoFull from "../assets/logo-full.jpg";
+import logoFull from "../assets/logo-full.png";
 import heroImage from "../assets/hero-bg.jpg";
 import imgTappa1 from "../assets/tappa1.jpg";
 import imgTappa2 from "../assets/tappa2.jpg";
@@ -73,13 +72,13 @@ export default function Home() {
 
   return (
     <Box sx={{ pb: 8 }}>
-      {/* --- SEZIONE HERO (INVARIATA) --- */}
+      {/* --- SEZIONE HERO (MODIFICATA) --- */}
       <Box
         sx={{
           backgroundImage: `url(${heroImage})`,
           backgroundSize: "cover",
           backgroundPosition: "center",
-          minHeight: "85vh",
+          minHeight: "90vh", // Ancora più alto per impatto scenico
           width: "100%",
           display: "flex",
           alignItems: "center",
@@ -92,62 +91,74 @@ export default function Home() {
             left: 0,
             right: 0,
             bottom: 0,
-            backgroundColor: "rgba(0,0,0, 0.3)",
+            // Scuriamo un po' di più lo sfondo per far leggere bene il logo e il testo bianco
+            backgroundColor: "rgba(0,0,0, 0.5)",
           },
         }}
       >
-        <Container maxWidth="md" sx={{ position: "relative", zIndex: 2 }}>
-          <Paper
-            elevation={10}
+        <Container
+          maxWidth="md"
+          sx={{ position: "relative", zIndex: 2, textAlign: "center" }}
+        >
+          {/* 1. IL LOGO FULL (Galleggiante) */}
+          <Box
+            component="img"
+            src={logoFull}
+            alt="La Cresta dell'Angiolo"
             sx={{
-              p: { xs: 4, md: 6 },
-              textAlign: "center",
-              backgroundColor: "rgba(251, 247, 240, 0.95)",
-              backdropFilter: "blur(5px)",
-              borderRadius: "4px",
-              border: "1px solid #B85C38",
-              outline: "4px double #B85C38",
-              outlineOffset: "-10px",
+              width: "100%",
+              maxWidth: "550px", // Bello grande
+              height: "auto",
+              mb: 3,
+              // Effetto "Glow" bianco intorno al logo per staccarlo dallo sfondo scuro
+              // Utile se il logo ha scritte nere
+              filter: "drop-shadow(0 0 15px rgba(255,255,255, 0.6))",
+            }}
+          />
+
+          {/* 2. I TITOLI (Ora in Bianco/Crema) */}
+          <Typography
+            variant="h4"
+            component="h2"
+            gutterBottom
+            sx={{
+              color: "#FBF7F0", // Colore Carta
+              fontStyle: "italic",
+              textShadow: "2px 2px 4px rgba(0,0,0,0.8)", // Ombra nera per leggibilità
             }}
           >
-            <Box
-              component="img"
-              src={logoFull}
-              alt="La Cresta dell'Angiolo"
-              sx={{
-                width: "100%",
-                maxWidth: "450px",
-                height: "auto",
-                mixBlendMode: "multiply",
-                mb: 2,
-              }}
-            />
+            Da Siena a Firenze
+          </Typography>
 
-            <Typography
-              variant="h4"
-              component="h2"
-              gutterBottom
-              sx={{ color: "text.primary", fontStyle: "italic" }}
-            >
-              Da Siena a Firenze
-            </Typography>
-            <Typography
-              variant="h5"
-              component="h3"
-              sx={{ color: "secondary.main", mb: 4, fontWeight: 400 }}
-            >
-              Dedicato all'Arcangelo Michele, ricalcando orme antichissime.
-            </Typography>
-            <Button
-              variant="contained"
-              color="primary"
-              size="large"
-              onClick={() => navigate("/il-progetto")}
-              sx={{ px: 5, py: 1.5, fontSize: "1.1rem" }}
-            >
-              Scopri il Progetto
-            </Button>
-          </Paper>
+          <Typography
+            variant="h5"
+            component="h3"
+            sx={{
+              color: "#B85C38", // Terra di Siena (Spicca bene sul nero)
+              mb: 5,
+              fontWeight: 400,
+              textShadow: "2px 2px 4px rgba(0,0,0,0.8)",
+            }}
+          >
+            Dedicato all'Arcangelo Michele, ricalcando orme antichissime.
+          </Typography>
+
+          {/* 3. BOTTONE AZIONE */}
+          <Button
+            variant="contained"
+            color="primary"
+            size="large"
+            onClick={() => navigate("/il-progetto")}
+            sx={{
+              px: 6,
+              py: 1.5,
+              fontSize: "1.2rem",
+              border: "1px solid #FBF7F0", // Bordo chiaro per eleganza
+              boxShadow: "0 0 20px rgba(184, 92, 56, 0.4)", // Alone luminoso arancio
+            }}
+          >
+            Scopri il Progetto
+          </Button>
         </Container>
       </Box>
 
@@ -185,10 +196,8 @@ export default function Home() {
         </Typography>
       </Container>
 
-      {/* --- SEZIONE CARDS TAPPE (SCROLL ORIZZONTALE) --- */}
+      {/* --- SEZIONE CARDS TAPPE --- */}
       <Container maxWidth="xl" sx={{ px: { xs: 0, md: 4 } }}>
-        <div className="ink-separator" style={{ marginBottom: "40px" }}></div>{" "}
-        {/* Padding ridotto su mobile per sfruttare tutto lo schermo */}
         <Typography
           variant="h2"
           gutterBottom
@@ -196,16 +205,14 @@ export default function Home() {
         >
           Le Tappe del Cammino
         </Typography>
-        {/* CONTENITORE SCROLLABILE */}
+
         <Box
           sx={{
             display: "flex",
-            overflowX: "auto", // Abilita lo scroll orizzontale
-            gap: 3, // Spazio tra le card
-            py: 4, // Padding verticale per non tagliare le ombre
-            px: { xs: 2, md: 4 }, // Padding laterale interno
-
-            // Stile della barra di scorrimento (Scrollbar)
+            overflowX: "auto",
+            gap: 3,
+            py: 4,
+            px: { xs: 2, md: 4 },
             "&::-webkit-scrollbar": { height: "8px" },
             "&::-webkit-scrollbar-track": {
               background: "#EFEBE2",
@@ -216,8 +223,6 @@ export default function Home() {
               borderRadius: "4px",
             },
             "&::-webkit-scrollbar-thumb:hover": { background: "#8f452b" },
-
-            // Supporto per lo scorrimento fluido su touch screen
             scrollBehavior: "smooth",
             WebkitOverflowScrolling: "touch",
           }}
@@ -226,17 +231,15 @@ export default function Home() {
             <Card
               key={tappa.id}
               sx={{
-                // DIMENSIONI FISSE PER L'ASPETTO VERTICALE
-                width: { xs: "280px", md: "320px" }, // Larghezza fissa
-                height: "500px", // Altezza notevole (Verticale)
-
-                flexShrink: 0, // Impedisce alle card di schiacciarsi
+                width: { xs: "280px", md: "320px", lg: "400px" },
+                height: "500px",
+                flexShrink: 0,
                 borderRadius: "2px",
                 border: "1px solid #B85C38",
                 position: "relative",
                 transition: "transform 0.3s ease-in-out",
                 "&:hover": {
-                  transform: "translateY(-10px)", // Si alza invece di zoomare
+                  transform: "translateY(-10px)",
                   boxShadow: "0 15px 30px rgba(0,0,0,0.3)",
                 },
               }}
@@ -255,7 +258,6 @@ export default function Home() {
                     display: "flex",
                     alignItems: "flex-end",
                     position: "relative",
-                    // Sfumatura più alta per coprire bene il testo verticale
                     "&::after": {
                       content: '""',
                       position: "absolute",
@@ -276,7 +278,6 @@ export default function Home() {
                       pb: 4,
                     }}
                   >
-                    {/* Numero Tappa decorativo */}
                     <Typography
                       variant="caption"
                       sx={{
@@ -289,24 +290,20 @@ export default function Home() {
                     >
                       TAPPA {tappa.id}
                     </Typography>
-
-                    {/* Titolo */}
                     <Typography
                       variant="h3"
                       component="h3"
                       sx={{
                         color: "#FBF7F0",
-                        fontSize: "2.2rem", // Titolo grande
+                        fontSize: "2.2rem",
                         textShadow: "2px 2px 4px rgba(0,0,0,0.8)",
                         lineHeight: 1,
                         mt: 1,
                         fontFamily: "UnifrakturMaguntia",
                       }}
                     >
-                      {tappa.title.replace(/Tappa \d+:? /, "")}{" "}
-                      {/* Rimuove "Tappa X" dal titolo per non ripeterlo */}
+                      {tappa.title.replace(/Tappa \d+:? /, "")}
                     </Typography>
-
                     <Button
                       variant="text"
                       sx={{

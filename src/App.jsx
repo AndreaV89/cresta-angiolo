@@ -15,6 +15,7 @@ import Footer from "./components/Footer";
 import Home from "./pages/Home";
 import PageTemplate from "./pages/PageTemplate";
 import TappaPage from "./pages/TappaPage";
+import IlProgetto from "./pages/IlProgetto";
 
 // --- DEFINIZIONE DEL TEMA "CARTA & INCHIOSTRO" ---
 const theme = createTheme({
@@ -165,10 +166,7 @@ function App() {
           <Route path="/" element={<Home />} />
 
           {/* Pagine statiche */}
-          <Route
-            path="/il-progetto"
-            element={<PageTemplate title="Il Progetto" />}
-          />
+          <Route path="/il-progetto" element={<IlProgetto />} />
           <Route path="/il-logo" element={<PageTemplate title="Il Logo" />} />
           <Route
             path="/credenziale"
